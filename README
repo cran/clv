@@ -1,0 +1,19 @@
+README :
+
+   This directory contains code, help, examples and demo for cluster validation
+   alghorithms working as an extention for package "cluster" 
+
+   This is the first verions of package "clv". Package is believed to be tested.
+   Any problems, bugs, comments, documentation misunderstandings etc. please send 
+   on the following email address: <wookashn@gmail.com>.
+
+TODO:
+
+   Create and document R functions for comptuing cluster stability for clustering  
+   alghoritms impelemted in cluster package.
+
+   Create and document R functions for group of matrix cluster scatter measures based 
+   indicies such as: Calinski-Harabasz index, Krzanowski & Lai index, Hartigan statistic.
+
+   Create and document R functions that helps to realise relative criteria approach for 
+   cluster validation.
