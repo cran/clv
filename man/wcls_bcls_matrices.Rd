@@ -1,4 +1,4 @@
-\name{clv}
+\name{wcls/bcls.matrix}
 \title{Matrix Cluster Scatter Measures}
 \description{
 	Functions compute two base matrix cluster scatter measures.

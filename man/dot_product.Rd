@@ -1,4 +1,4 @@
-\name{clv}
+\name{dot.product}
 \title{Similarity index based on dot product - External Measure, Cluster Stability}
 \description{
 	Similarity index based on dot product is the measure which estimates how those two different partitionings, that comming from one 

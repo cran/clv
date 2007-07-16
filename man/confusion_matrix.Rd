@@ -1,4 +1,4 @@
-\name{clv}
+\name{confusion.matrix}
 \title{Confusion Matrix - External Measures, Cluster Stability}
 \description{
 	For two different partitioning function computes \emph{confusion matrix}.

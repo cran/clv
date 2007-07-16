@@ -1,4 +1,4 @@
-\name{clv}
+\name{connectivity}
 \title{Connectivity Index - Internal Measure}
 \description{
 	Function evaluates \emph{connectivity} index.

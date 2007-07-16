@@ -1,4 +1,4 @@
-\name{clv}
+\name{clv.Dens_bw}
 \title{Inter-cluster density - Internal Measure}
 \description{
 	Function computes \emph{inter-cluster density}.

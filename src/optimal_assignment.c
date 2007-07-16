@@ -41,7 +41,7 @@ int clv_checkConflict(int* opt_assignment, int row_num, int pos)
 
 /*
 	"Throw a coin" function. 
-	0 - face, 1 - reverse
+	0 - heads, 1 - tails
 */
 
 int clv_throwTheCoin()

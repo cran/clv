@@ -178,7 +178,6 @@ SEXP clv_clustersSize(const SEXP cluster_tab_sxp, int clust_num)
 	return cluster_size_sxp;
 }
 
-
 // various functions
 
 pMetricFunct getMetricFunct(int num)

@@ -1,4 +1,4 @@
-\name{clv}
+\name{std.ext}
 \title{Standard External Measures: Rand index, Jaccard coefficient etc. }
 \description{
 	Group of functions which compute standard external measures such as: 

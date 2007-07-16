@@ -1,4 +1,4 @@
-\name{clv}
+\name{clv.Davies.Bouldin}
 \title{Davies-Bouldin Index -  Internal Measure}
 \description{
 	Function computes \emph{Dunn index} - internal measure for given data and its partitioning.

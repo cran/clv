@@ -1,4 +1,4 @@
-\name{clv}
+\name{similarity.index}
 \title{Similarity index based on confusion matrix - External Measure, Cluster Stability}
 \description{
 	Similarity index based on confusion matrix is the measure which estimates how those two different partitionings, that comming from one 

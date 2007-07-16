@@ -1,4 +1,4 @@
-\name{clv}
+\name{clv.Scatt}
 \title{Average scattering for clusters - Internal Measure}
 \description{
 	Function computes \emph{average scattering for clusters}.

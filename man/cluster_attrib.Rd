@@ -1,4 +1,4 @@
-\name{clv}
+\name{cls.attrib}
 \title{Mean, cluster size and center - cluster utilities}
 \description{
 	Mean, center of each cluster, number of objects in each cluster - informations retrieved from partitioned data

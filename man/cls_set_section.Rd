@@ -1,5 +1,5 @@
-\name{clv}
-\title{Section of two subsets - External Measures utilities}
+\name{cls.set.section}
+\title{Section of two subsets - External Measure utilities}
 \description{
 	Function finds section of two different subsets comming from the same data set.
 }

@@ -1,4 +1,4 @@
-\name{clv}
+\name{cls.scatt.data}
 \title{Intercluster distances and intracluster diameters - Internal Measures}
 \description{
 	Two functions which find most popular \emph{intercluster distances} and \emph{intracluster diameters}.

@@ -1,4 +1,4 @@
-\name{clv}
+\name{clv.Dis}
 \title{Total separation between clusters - Internal Measure}
 \description{
 	Function computes \emph{total separation between clusters}.
@@ -8,7 +8,7 @@ clv.Dis(cluster.center)
 }
 \alias{clv.Dis}
 \arguments{
-  \item{data}{
+\item{cluster.center}{
 		\code{numeric matrix} or \code{data.frame} where columns correspond to variables and rows 
 		cluster centers.
 	}

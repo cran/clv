@@ -1,4 +1,4 @@
-\name{clv}
+\name{clv.SD, clv.SDbw}
 \title{SD, SDbw - Internal Measures}
 \description{
 	Function computes \emph{SD} and \emph{\eqn{\textrm{S\_Dbw}}{S_Dbw} validity indices}.
