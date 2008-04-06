@@ -5,7 +5,7 @@ README :
 
    This is the first verions of package "clv". Package is believed to be tested.
    Any problems, bugs, comments, documentation misunderstandings etc. please send 
-   on the following email address: <wookashn@gmail.com>.
+   on the following email address: <wookashn at gmail.com>.
 
 TODO:
 
@@ -17,3 +17,7 @@ TODO:
 
    Create and document R functions that helps to realise relative criteria approach for 
    cluster validation.
+
+SPECIAL THANKS TO:
+
+   Artur Suchwalko for idea of this package and support.

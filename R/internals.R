@@ -53,7 +53,7 @@ cls.vect.validity <- function(clust, name)
 	# check empty clusters
 	if( FALSE %in% (1:max(clust) %in% clust) )
 		warning(paste("Vector '", name, "' contains empty clusters, one or more values 
-				from 1 to max(clust) do not appears in this vector.", sep=""))
+				from 1 to max(clust) do not appear in this vector.", sep=""))
 
 	return(clust)
 }
@@ -139,7 +139,7 @@ cls.attrib <- function(data, clust)
 	clust = cls.vect.validity(clust, "clust")
 	
 	if(dim(data)[1] != length(clust))
-		stop("Bad input data: number of 'data' objects do not agree with length of vector 'clust'.")
+		stop("Bad input data: number of 'data' objects does not agree with length of vector 'clust'.")
 
 	clust_num = as.integer(max(clust))
 

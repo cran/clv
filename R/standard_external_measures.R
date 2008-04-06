@@ -74,7 +74,7 @@ clv_conv <- function(external.ind)
 clv.Rand <- function(external.ind)
 {
 	v = clv_conv(external.ind)
-	result = (v[1]+v[2])/sum(v)
+	result = (v[1]+v[4])/sum(v)
 	return(result)
 }
 

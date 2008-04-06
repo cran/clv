@@ -157,3 +157,4 @@ SEXP standardExternalMeasuresSlow(SEXP cluster1_sxp, SEXP cluster2_sxp)
 	UNPROTECT(protect_num++);
 	return result_list;
 }
+

@@ -11,3 +11,4 @@ SEXP clv_clustersSizeExt(const SEXP cluster_tab_sxp, const SEXP clust_num_sxp)
 {
 	return clv_clustersSize(cluster_tab_sxp, INTEGER(clust_num_sxp)[0]);
 }
+

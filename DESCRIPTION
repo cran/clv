@@ -1,6 +1,6 @@
 Package: clv
 Title: Cluster Validation Techniques
-Version: 0.1-1
+Version: 0.1-2
 Author: Lukasz Nieweglowski. <wookashn@gmail.com>
 Maintainer: Lukasz Nieweglowski. <wookashn@gmail.com>
 Description: 
@@ -9,4 +9,4 @@ Description:
 	stability approach applied to algorithms implemented in "cluster" package. 
 Depends: cluster
 License: GPL version 2 or later
-Packaged: Mon Jul 16 12:00:43 2007; root
+Packaged: Sun Apr  6 23:39:10 2008; wookash
