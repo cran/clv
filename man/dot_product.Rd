@@ -1,5 +1,5 @@
 \name{dot.product}
-\title{Similarity index based on dot product - External Measure, Cluster Stability}
+\title{Cosine similarity measure - External Measure, Cluster Stability}
 \description{
 	Similarity index based on dot product is the measure which estimates how those two different partitionings, that comming from one 
 	dataset, are different from each other.
@@ -31,10 +31,10 @@ dot.product(clust1, clust2)
 	<P,P'> = sum(forall i and j) P[i,j]*P'[i,j]
 
 	This \emph{dot product} satisfy Cauchy-Schwartz inequality <P,P'> <= <P,P>*<P',P'>.
-	As result we get \emph{similarity index}: <P,P'>/sqrt(<P,P>*<P',P'>) 
+	As result we get \emph{cosine similarity measure}: <P,P'>/sqrt(<P,P>*<P',P'>) 
 }
 \value{
-	\code{dot.product} returns a \emph{similarity index} of two partitionings. 
+	\code{dot.product} returns a \emph{cosine similarity measure} of two partitionings. 
 	\code{NaN} is returned when in any partitioning each cluster contains only one object.
 }
 \seealso{ 

@@ -88,8 +88,7 @@ check.intercls.method <- function(intercls)
 	if( !(TRUE %in% choosen.methods) )
 		stop("Bad input data: 'intercls' vector does not contain any supported intracluster distance, 
 			  supported are: single | complete | average | centroid | aveToCent | hausdorff" )
-	return(choosen.methods)
-	
+	return(choosen.methods)	
 }
 
 check.intracls.diss.mx.method <- function(intracls)
@@ -99,8 +98,8 @@ check.intracls.diss.mx.method <- function(intracls)
 	if( !(TRUE %in% choosen.methods) )
 		stop("Bad input data: 'intracls' vector does not contain any supported intracluster distance, 
 			  supported are: complete | average." )
-	return(choosen.methods)
 	
+	return(choosen.methods)
 }
 
 check.intercls.diss.mx.method <- function(intercls)
@@ -114,6 +113,15 @@ check.intercls.diss.mx.method <- function(intercls)
 	
 }
 
+check.avail.methods <- function(user.methods, vec.name, supp.methods)
+{	
+	choosen.methods = supp.methods %in% user.methods
+	if( !(TRUE %in% choosen.methods) )
+		stop(paste( "Bad input data:", "'vec.name'", "vector does not contain any supported method name, 
+			  supported are:", paste( supp.methods , collapse=" | " ) ) )
+	return(choosen.methods)
+	
+}
 
 # functions very usefull in visualization of "clusterScatterMeasures results
 cut.matrix <- function(matrix, not.empty.cls, names)
@@ -133,13 +141,28 @@ cut.vector <- function(vect, not.empty.cls, names)
 	return(vect)
 }
 
+cluster.size <- function(clust, cl.num=0)
+{
+	clust = cls.vect.validity(clust, "clust")
+	clust_num = cl.num
+	if( is.numeric(clust_num) == FALSE || cl.num <= 0) clust_num = max(clust)
+
+	idx <- .Call( "clv_clustersSizeExt",
+			  as.integer(clust),
+			  as.integer(clust_num),
+			  PACKAGE="clv"
+			)
+
+	return(idx)
+}
+
 cls.attrib <- function(data, clust)
 {
 	data = data.validity(data, "data")
 	clust = cls.vect.validity(clust, "clust")
 	
 	if(dim(data)[1] != length(clust))
-		stop("Bad input data: number of 'data' objects does not agree with length of vector 'clust'.")
+		stop("Bad input data: number of 'data' objects do not agree with length of vector 'clust'.")
 
 	clust_num = as.integer(max(clust))
 

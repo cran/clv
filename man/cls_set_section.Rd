@@ -33,7 +33,7 @@ cls.set.section(clust1, clust2)
 	First column gives information about object number in dataset in increasing order.
 	Second column store information about cluster id the object is assigned to. 
 	Information is taken from \code{clust1 vector}
-	The same is for the second column but cluster id is taken from \code{vector clust2}.
+	The same is for the third column but cluster id is taken from \code{vector clust2}.
 }
 \examples{
 # create two different subsamples 

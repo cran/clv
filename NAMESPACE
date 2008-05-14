@@ -26,5 +26,7 @@ export("cls.scatt.data",
 	"clv.DensBw",
 	"clv.SD",
 	"clv.SDbw",
-	"cls.attrib"
+	"cls.attrib",
+	"cls.stab.opt.assign",
+	"cls.stab.sim.ind"
 )
