@@ -21,80 +21,84 @@ cls.stab.opt.assign( data, cl.num, rep.num, subset.ratio, clust.method, method.t
 		If vector is not an integer type, it will be coerced with warning.
 	}
   \item{rep.num}{
-		integer number which tells how many pairs of data subsets will be partitioned for particualar number of clusters.
-		The results of partitioning for given pair of subsets is used to compute similarity indicies (in case of \code{cls.stab.sim.ind}) 
+		integer number which tells how many pairs of data subsets will be partitioned for particular number of clusters.
+		The results of partitioning for given pair of subsets is used to compute similarity indices (in case of \code{cls.stab.sim.ind}) 
 		or \emph{pattern-wise stability} (in case of \code{cls.stab.opt.assign}, for more details see references). 
-		By default \code{rep.num} value is 10. 
+		By default \code{rep.num} value is 10. If wrong argument is applied it will be repaced with default value.
 		
 	}
   \item{subset.ratio}{
 		a number comming from (0,1) section which tells how big data subsets should be. 0 means empty subset, 1 means all data. 
-		By default \code{subset.ratio} is set to 0.75
+		By default \code{subset.ratio} is set to 0.75. If wrong argument is applied it will be repaced with default value.
 	}
   \item{clust.method}{
-		string vector with names of cluster alghorithms to be used. Available are:
+		string vector with names of cluster algorithms to be used. Available are:
 		"agnes", "diana", "hclust", "kmeans", "pam", "clara". Combinations are also possible.
 		By default \code{c("agnes","pam")} vector is applied.
 	}
   \item{method.type}{
 		string vector with information useful only in context of "agnes" and "hclust" algorithms . Available are:
 		"single", "average", "complete", "ward" and "weighted" (for more details see \code{\link{agnes}},
-		\code{\link{hclust}} ). The last type is aplicable only for "agnes". Combinations are also possible.
+		\code{\link{hclust}} ). The last type is applicable only for "agnes". Combinations are also possible.
 		By default \code{c("single","average")} vector is applied.
 	}
   \item{sim.ind.type}{
 		string vector with information useful only for \code{cls.stab.sim.ind} function. User is able to choose which 
-		similarity idicies (external measures) to use to compare two partitionings. Available are:
+		similarity indices (external measures) to use to compare two partitionings. Available are:
 		"dot.pr", "sim.ind", "rand", "jaccard" (for more details see \code{\link{similarity.index}},
 		\code{\link{dot.product}}, \code{\link{std.ext}}). Combinations are also possible.
 		By default \code{c("dot.pr","sim.ind")} vector is applied.
 	}
   \item{fast}{
-		logical argument which sets the way of computing cluster stability for hierarhical algorithms. By default it is set to
-		TRUE, which means that each result produced by hierarhical algorithm is partitioned for the number of clusters choosen in 
+		logical argument which sets the way of computing cluster stability for hierarchical algorithms. By default it is set to
+		TRUE, which means that each result produced by hierarchical algorithm is partitioned for the number of clusters chosen in 
 		\code{cl.num} argument and given clustering results are put for further computation. In this way computation of cluster 
-		stability is faster.
+		stability is faster. If wrong argument is applied it will be repaced with default value.
 	}
   
   \item{...}{
-		additional parameters for clustering algorithms. Note: use with caution! Different clustering methods choosen in \code{clust.method} have 
+		additional parameters for clustering algorithms. Note: use with caution! Different clustering methods chosen in \code{clust.method} have 
 		different set of parameter names - mixing them often disallow any cluster algorithm to run.
 	}
 }
 \details{
 	Both functions realize cluster stability approaches described in \emph{Detecting stable clusters using principal component analysis} (see references).
 	
-	The \code{cls.stab.sim.ind} function realizes alghorithm given in \emph{chaper 3.1} where only cosine similarity index (see \code{\link{dot.product}}) 
+	The \code{cls.stab.sim.ind} function realizes algorithm given in \emph{chapter 3.1} where only cosine similarity index (see \code{\link{dot.product}}) 
 	is introduced as a similarity index between two different partitionings. This function realize this cluster stability approach also for other 
-	similarity indicies such us \code{\link{similarity.index}}, \code{\link{clv.Rand}} and \code{\link{clv.Jaccard}}.
-	The important thing is that \code{similarity index} (if choosen) produced by this function is not exactly the same as index produced by
+	similarity indices such us \code{\link{similarity.index}}, \code{\link{clv.Rand}} and \code{\link{clv.Jaccard}}.
+	The important thing is that \code{similarity index} (if chosen) produced by this function is not exactly the same as index produced by
 	\code{\link{similarity.index}} function. The value of the \code{\link{similarity.index}} is a number which depends on number of clusters.
 	Eg. if two "n-clusters" partitionings are compared the value always will be a number which belong to the \code{[1/n, 1]} section. That means the 
 	results produced by this similarity index are not comparable for different number of clusters. That's why each result is scaled thanks to 
 	the linear function \code{f:[1/n, 1] -> [0, 1]} where "n" is a number of clusters.
-	The resutls' layout is described in \emph{Value} section.
+	The results' layout is described in \emph{Value} section.
 
-	The \code{cls.stab.opt.assign} function realizes alghorithm given in \emph{chaper 3.2} where \emph{pattern-wise agreement} and 
-	\emph{pattern-wise stability} was intoduced. Function returns the lowest \emph{pattern-wise stability} value for given number of
-	clusters. The resutls' layout is described in \emph{Value} section.
+	The \code{cls.stab.opt.assign} function realizes algorithm given in \emph{chapter 3.2} where \emph{pattern-wise agreement} and 
+	\emph{pattern-wise stability} was introduced. Function returns the lowest \emph{pattern-wise stability} value for given number of
+	clusters. The results' layout is described in \emph{Value} section.
 
 	It often happens that clustering algorithms can't produce amount of clusters that user wants. In this situation only the warning is 
-	produceded and cluster stability is computed for partitionings with unequal number of clusters.
+	produced and cluster stability is computed for partitionings with unequal number of clusters.
+
+  The cluster stability will not be calculated for all cluster numbers that are bigger than the subset size.
+  For example if \code{data} contains about 20 objects and the \code{subset.ratio} equals 0.5 then the highest cluster number to 
+  calculate is 10. In that case all elements above 10 will be removed from \code{cl.num} vector.
 }
 \value{
-	\code{cls.stab.sim.ind} returns a list of lists of matricies. Each matrix consists of the set of external similarity indicies (which one similarity 
-	index see below) where number of collumns is equal to \code{cl.num} vector length and row number is equal to \code{rep.num} value what means
-	that each collumn contain a set of similarity indicies computed for fixed number of clusters.
-	The order of the matricies depends on three input arguments: \code{clust.method}, \code{method.type}, and \code{sim.ind.type}.
+	\code{cls.stab.sim.ind} returns a list of lists of matrices. Each matrix consists of the set of external similarity indices (which one similarity 
+	index see below) where number of columns is equal to \code{cl.num} vector length and row number is equal to \code{rep.num} value what means
+	that each column contain a set of similarity indices computed for fixed number of clusters.
+	The order of the matricides depends on three input arguments: \code{clust.method}, \code{method.type}, and \code{sim.ind.type}.
 	Combination of \code{clust.method} and \code{method.type} give a names for elements listed in the first list. Each element of this list is also a 
-	list type where each element name correspond to one of similarity index type choosen thanks to \code{sim.ind.type} argument. 
+	list type where each element name correspond to one of similarity index type chosen thanks to \code{sim.ind.type} argument. 
 	The order of the names exactly match to the order given in those arguments description. It is easy to understand after considering the 
 	following example. \cr
 	Let say we are running \code{cls.stab.sim.ind} with default arguments then the results will be given in the following order:
 	\code{$agnes.single$dot.pr}, \code{$agnes.single$sim.ind}, \code{$agnes.average$dot.pr}, \code{$agnes.average$sim.ind}, \code{$pam$dot.pr}, 
 	\code{$pam$sim.ind}. \cr\cr
 
-	\code{cls.stab.opt.assign} returns a list of vectors. Each vector consists of the set of cluster stability indicies described in 
+	\code{cls.stab.opt.assign} returns a list of vectors. Each vector consists of the set of cluster stability indices described in 
 	\emph{Detecting stable clusters using principal component analysis} (see references). Vector length is equal to \code{cl.num} vector length what 
 	means that each position in vector is assigned to proper clusters' number given in \code{cl.num} argument.
 	The order of the vectors depends on two input arguments: \code{clust.method}, \code{method.type}. The order of the names exactly match to the order 
@@ -106,14 +110,15 @@ cls.stab.opt.assign( data, cl.num, rep.num, subset.ratio, clust.method, method.t
 }
 \seealso{
 		Functions that compare two different partitionings:
-		\code{\link{clv.Rand}}, \code{\link{dot.product}},\code{\link{similarity.index}}.
+		\code{\link{clv.Rand}}, \code{\link{dot.product}},\code{\link{similarity.index}, 
+          \code{\link{cls.stab.sim.ind.usr}}, \code{\link{cls.stab.opt.assign.usr}}}.
 	}
 \references{
 	A. Ben-Hur and I. Guyon \emph{Detecting stable clusters using principal component analysis},
-	\url{http://citeseer.ist.psu.edu/528061.html}
+	\url{http://citeseerx.ist.psu.edu/}
 
 	C. D. Giurcaneanu, I. Tabus, I. Shmulevich, W. Zhang \emph{Stability-Based Cluster Analysis Applied To Microarray Data}, 
-	\url{http://citeseer.ist.psu.edu/577114.html}.
+	\url{http://citeseerx.ist.psu.edu/}.
 
 	T. Lange, V. Roth, M. L. Braun and J. M. Buhmann \emph{Stability-Based Validation of Clustering Solutions},
 	\url{ml-pub.inf.ethz.ch/publications/papers/2004/lange.neco_stab.03.pdf}
@@ -136,7 +141,6 @@ res2 = cls.stab.opt.assign( iris.data, iter, clust.method=c("hclust","kmeans"), 
 print(res1)
 boxplot(res1$agnes.average$sim.ind)
 plot(res2$hclust.single)
-
 
 }
 \author{Lukasz Nieweglowski}

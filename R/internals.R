@@ -1,5 +1,6 @@
 # set class value for cluster scatter list
 
+clv.paste <- function(...) paste(..., sep="")
 cls.class <- function() { return("cls.list") }
 
 # important functions to check validity of inputs in many functions in this package 
@@ -29,7 +30,38 @@ data.validity.int <- function(data, name)
 	return( as.matrix(data) )
 }
 
-cls.vect.validity <- function(clust, name)
+
+# this function checks integer vectors that contains numbers of clusters 
+# to which data will be clustered
+
+cls.num.vect.validity <- function(clust, obj.num, name)
+{
+	# informtaion about object id's should be a vector type 
+	if( is.vector(clust) == FALSE ) 
+		stop(paste("Bad usage: input '", name ,"' should be vector type.", sep=""))
+
+	# cluster id should be a integer type, if not, it have to be coerced 
+	if( !is.integer(clust) )
+	{
+		clust = as.integer(clust)
+		warning(paste("Vector '", name,"' should be an integer so it was coerced to integer type.", sep=""))
+		if( NA %in% clust )
+			stop(paste("Coercion of vector '", name, "' produced NA values ", sep=""))
+		if( TRUE %in% ( clust > 100 ) )
+			warning("Cluster number is very big (more than 100).")
+	}
+	
+	# cluster id can't be less than 2
+	if( length( clust[ clust < 2 ] ) != 0 || length( clust[ clust > obj.num ] ) != 0 )
+		stop(paste("Bad input data: vector '", name, "' contains numbers less than 2 
+			  but every cluster number should be a number from 2 to object number.", sep=""))
+	
+	return(clust)
+}
+
+# this function checks integer vectors that contains cluster id's for each clustered object 
+
+cls.id.vect.validity <- function(clust, name)
 {
 	# informtaion about object id's should be a vector type 
 	if( is.vector(clust) == FALSE ) 
@@ -117,8 +149,7 @@ check.avail.methods <- function(user.methods, vec.name, supp.methods)
 {	
 	choosen.methods = supp.methods %in% user.methods
 	if( !(TRUE %in% choosen.methods) )
-		stop(paste( "Bad input data:", "'vec.name'", "vector does not contain any supported method name, 
-			  supported are:", paste( supp.methods , collapse=" | " ) ) )
+		stop(paste( "Bad input data: \"", vec.name, "\" vector does not contain any supported method name, supported are: ", paste( supp.methods , collapse=" | " ), sep="" ) )
 	return(choosen.methods)
 	
 }
@@ -143,7 +174,6 @@ cut.vector <- function(vect, not.empty.cls, names)
 
 cluster.size <- function(clust, cl.num=0)
 {
-	clust = cls.vect.validity(clust, "clust")
 	clust_num = cl.num
 	if( is.numeric(clust_num) == FALSE || cl.num <= 0) clust_num = max(clust)
 
@@ -159,7 +189,7 @@ cluster.size <- function(clust, cl.num=0)
 cls.attrib <- function(data, clust)
 {
 	data = data.validity(data, "data")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 	
 	if(dim(data)[1] != length(clust))
 		stop("Bad input data: number of 'data' objects do not agree with length of vector 'clust'.")

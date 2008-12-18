@@ -7,7 +7,7 @@
 cls.scatt.data <- function( data, clust, dist="euclidean" )
 {
 	data = data.validity(data, "data")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 	dist = dist.validity(dist)
 	
 	if(dim(data)[1] != length(clust))
@@ -65,7 +65,7 @@ cls.scatt.data <- function( data, clust, dist="euclidean" )
 cls.scatt.diss.mx <- function( diss.mx, clust )
 {
 	diss.mx = data.validity(diss.mx, "diss.mx")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 
 	if(dim(diss.mx)[1] != dim(diss.mx)[2])
 		stop("Bad input data: 'diss.mx' should be a square (symetric) matrix.")

@@ -33,8 +33,8 @@ clv.Russel.Rao(external.ind)
 }
 \details{
 	Two input \code{vectors} keep information about two different partitionings (let say P and P')
-	of the same data set X. We refer to a pair of points (xi, xj) from the data set using the following 
-	terms:
+	of the same data set X. We refer to a pair of points (xi, xj) (we assume that i != j) from the 
+	data set using the following terms:
 	\tabular{ll}{
 		\code{SS} \tab - number of pairs where both points belongs to the same cluster in 
 		both partitionings, \cr
@@ -79,8 +79,8 @@ data(iris)
 iris.data <- iris[,1:4]
 
 # cluster data
-pam.mod <- pam(iris.data,5) # create five clusters
-v.pred <- as.integer(pam.mod$clustering) # get cluster ids associated to gived data objects
+pam.mod <- pam(iris.data,3) # create three clusters
+v.pred <- as.integer(pam.mod$clustering) # get cluster ids associated to given data objects
 v.real <- as.integer(iris$Species) # get also real cluster ids
 
 # compare true clustering with those given by the algorithm

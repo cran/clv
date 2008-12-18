@@ -3,7 +3,7 @@
 wcls.matrix <- function(data, clust, cluster.center)
 {
 	data = data.validity(data, "data")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 	cluster.center = data.validity(cluster.center, "cluster.center")
 
 	if( dim(data)[1] != length(clust) )

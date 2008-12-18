@@ -2,7 +2,7 @@
 connectivity <- function ( data, clust, neighbour.num, dist="euclidean" )
 {
 	data = data.validity(data, "data")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 	dist = dist.validity(dist)	
  
 	if( is.vector(neighbour.num) == FALSE ) 
@@ -29,7 +29,7 @@ connectivity <- function ( data, clust, neighbour.num, dist="euclidean" )
 connectivity.diss.mx <- function ( diss.mx, clust, neighbour.num )
 {
 	diss.mx = data.validity(diss.mx, "diss.mx")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
  
 	if( is.vector(neighbour.num) == FALSE ) 
 		stop("Bad usage: input 'neighbour.num' should be vector type.")

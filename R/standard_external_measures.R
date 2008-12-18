@@ -4,8 +4,8 @@
 
 std.ext <- function(clust1, clust2)
 {
-	clust1 = cls.vect.validity(clust1, "clust1")
-	clust2 = cls.vect.validity(clust2, "clust2")
+	clust1 = cls.id.vect.validity(clust1, "clust1")
+	clust2 = cls.id.vect.validity(clust2, "clust2")
 
 	if( length(clust1) != length(clust2) )
 		stop("Bad input data: both vectors should have the same length.")
@@ -30,8 +30,8 @@ std.ext <- function(clust1, clust2)
 
 ext.measures.slow <- function(clust1, clust2)
 {
-	clust1 = cls.vect.validity(clust1, "clust1")
-	clust2 = cls.vect.validity(clust2, "clust2" )
+	clust1 = cls.id.vect.validity(clust1, "clust1")
+	clust2 = cls.id.vect.validity(clust2, "clust2" )
 
 	if( length(clust1) != length(clust2) )
 		stop("Bad input data: both vectors should have the same length.")

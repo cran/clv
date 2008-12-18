@@ -2,7 +2,7 @@
 clv.Scatt <- function( data, clust, dist="euclidean")
 {
 	data = data.validity(data, "data")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 	dist = dist.validity(dist)
 	
 	if(dim(data)[1] != length(clust))
@@ -37,7 +37,7 @@ clv.Dis <- function(cluster.center)
 clv.DensBw <- function( data, clust, scatt.obj, dist="euclidean" )
 {
 	data = data.validity(data, "data")
-	clust = cls.vect.validity(clust, "clust")
+	clust = cls.id.vect.validity(clust, "clust")
 	dist = dist.validity(dist)
 	
 	if( class(scatt.obj) != "scatt.obj" )

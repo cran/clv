@@ -15,7 +15,7 @@ cls.scatt.diss.mx(diss.mx, clust)
 		observations
 	}
   \item{diss.mx}{
-		square, symetric \code{numeric matrix} or \code{data.frame}, representation of 
+		square, symmetric \code{numeric matrix} or \code{data.frame}, representation of 
 		dissimilarity matrix where infomartion about distances between objects is stored.
 	}
   \item{clust}{
@@ -62,7 +62,7 @@ cls.scatt.diss.mx(diss.mx, clust)
 	dist2(Ci,Cj) = max{ d(x,y): x belongs to Ci and y to Cj cluster }
 
 	The \emph{average linkage} distance defines the average distance between all of the samples 
-	belonging to two dfferent clusters. 
+	belonging to two different clusters. 
 
 	dist3(Ci,Cj) = 1/(|Ci|*|Cj|) * sum{forall x belongs Ci and y to Cj } d(x,y)
 
@@ -98,9 +98,9 @@ cls.scatt.diss.mx(diss.mx, clust)
 	\code{intercls.centroid},
 	\code{intercls.ave_to_cent},
 	\code{intercls.hausdorff}
-	in symetric matricies.
+	in symmetric matrices.
 	Vectors' lengths and both dimensions of each matrix are equal to number of clusters.
-	Additionaly in result list \code{cluster.center} matrix (rows correspond to clusters centers) 
+	Additionally in result list \code{cluster.center} matrix (rows correspond to clusters centers) 
 	and \code{cluster.size} vector is given (information about size of each cluster).
 	\cr\cr
 	\code{cls.scatt.diss.mx} returns an object of class \code{"list"}.
@@ -112,9 +112,9 @@ cls.scatt.diss.mx(diss.mx, clust)
 	\code{intercls.complete},
 	\code{intercls.average},
 	\code{intercls.hausdorff}
-	in symetric matricies.
+	in symmetric matrices.
 	Vectors' lengths and both dimensions of each matrix are equal to number of clusters.
-	Additionaly in result list \code{cluster.size} vector is given (information about size of each cluster).
+	Additionally in result list \code{cluster.size} vector is given (information about size of each cluster).
 }
 \references{
 	J. Handl, J. Knowles and D. B. Kell \emph{Computational cluster validation in post-genomic data analysis},
@@ -131,7 +131,7 @@ iris.data <- iris[,1:4]
 
 # cluster data
 pam.mod <- pam(iris.data,5) # create five clusters
-v.pred <- as.integer(pam.mod$clustering) # get cluster ids associated to gived data objects
+v.pred <- as.integer(pam.mod$clustering) # get cluster ids associated to given data objects
 
 # compute intercluster distances and intracluster diameters
 cls.scatt1 <- cls.scatt.data(iris.data, v.pred)

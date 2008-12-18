@@ -4,7 +4,7 @@ cls.set.section <- function (clust1,clust2)
 	clust1 = data.validity.int(clust1, "clust1")
 	clust2 = data.validity.int(clust2, "clust2")
  
-	if( dim(clust1)[2] != 2 | dim(clust2)[2] != 2 )
+	if( dim(clust1)[2] != 2 || dim(clust2)[2] != 2 )
 		stop("Bad input data: each matrix should have two columns.")
 
 	result <- .Call( "clv_clusteredSetsSection" ,
@@ -20,8 +20,8 @@ cls.set.section <- function (clust1,clust2)
 
 dot.product <- function (clust1,clust2) 
 {
-	clust1 = cls.vect.validity(clust1,"clust1")
-	clust2 = cls.vect.validity(clust2,"clust2")
+	clust1 = cls.id.vect.validity(clust1,"clust1")
+	clust2 = cls.id.vect.validity(clust2,"clust2")
  
 	if( length(clust1) != length(clust2) )
 		stop("Bad input data: both vectors should have the same length.")

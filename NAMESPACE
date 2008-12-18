@@ -28,5 +28,8 @@ export("cls.scatt.data",
 	"clv.SDbw",
 	"cls.attrib",
 	"cls.stab.opt.assign",
-	"cls.stab.sim.ind"
+	"cls.stab.sim.ind",
+  "cls.stab.opt.assign.usr",
+  "cls.stab.sim.ind.usr",
+  "cls.alg"
 )

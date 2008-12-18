@@ -1,4 +1,6 @@
 
+#-------------------------------------------------------------------------------------------------#
+
 # external measures constant values 
 
 dt.sim.ind.const = 1
@@ -106,3 +108,20 @@ ward.num.const     = 4
 weighted.num.const = 5
 
 hierarhical.method.types.vec.const = c("single", "average", "complete", "ward", "weighted")
+
+#-------------------------------------------------------------------------------------------------#
+
+# classification/prediction algorithms constants
+
+knn.num.const = 1
+pred.method.types.vec.const = c("knn")
+
+supp.pred.methods.list.const = list(
+	list(
+		num = knn.num.const,
+		alg = knn.pred,
+		sup = TRUE
+	)
+)
+
+#-------------------------------------------------------------------------------------------------#

@@ -23,8 +23,8 @@ cls.attrib(data, clust)
 		\code{mean} - \code{numeric vector} which represents mean of given \code{data}, \cr
 		\code{cluster.center} - \code{numeric matrix} where columns correspond to variables and rows to observations,\cr
 		\code{cluster.size} - \code{integer vector} with information about size of each cluster.
-	}
 }
+
 \seealso{
 		Result of function is mostly used to compute following indicies:
 		\code{\link{clv.Dis}}, \code{\link{wcls.matrix}}, \code{\link{bcls.matrix}}.
