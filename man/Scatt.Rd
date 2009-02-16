@@ -23,7 +23,7 @@ clv.Scatt(data, clust, dist="euclidean")
 	vector of variances computed for particular dimensions. 
 	\emph{Average scattering for clusters} is defined as:
 
-	\code{Scatt} = (1/|C|) * sum{forall i in 1:|C|} ||\emph{sigma}(Ci)||/||\emph{sigma}(X)||
+	\code{Scatt} = (1/|C|) * sum\{forall i in 1:|C|\} ||\emph{sigma}(Ci)||/||\emph{sigma}(X)||
 
 	where:
 	\tabular{ll}{
@@ -36,7 +36,7 @@ clv.Scatt(data, clust, dist="euclidean")
 
 	\emph{Standard deviation} is defined as:
 
-	\code{stdev} = (1/|C|) * sqrt( sum{forall i in 1:|C|} ||\emph{sigma}(Ci)||  )
+	\code{stdev} = (1/|C|) * sqrt( sum\{forall i in 1:|C|\} ||\emph{sigma}(Ci)||  )
 
 }
 \value{

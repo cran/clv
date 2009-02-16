@@ -18,8 +18,8 @@ clv.DensBw(data, clust, scatt.obj, dist="euclidean")
 \details{
 	The definition of \emph{inter-cluster density} is given by equation: 
 
-	\code{Dens_bw} = 1/(|C|*(|C|-1)) * sum{forall i in 1:|C|} sum{forall j in 1:|C| and j != i}
-					\emph{density}(u(i,j))/max{\emph{density}(v(i)), \emph{density}(v(j))}
+	\code{Dens_bw} = 1/(|C|*(|C|-1)) * sum\{forall i in 1:|C|\} sum\{forall j in 1:|C| and j != i\}
+					\emph{density}(u(i,j))/max\{\emph{density}(v(i)), \emph{density}(v(j))\}
 
 	where:
 	\tabular{ll}{
@@ -37,7 +37,7 @@ clv.DensBw(data, clust, scatt.obj, dist="euclidean")
 	}
 	Function \emph{f} is used in definition of \emph{density}(u):
 
-	\emph{density}(u) = sum{forall i in 1:n(i,j)} \emph{f}(xi,u)
+	\emph{density}(u) = sum\{forall i in 1:n(i,j)\} \emph{f}(xi,u)
 
 	where n(i,j) is the number of objects which belongs to clusters i and j and xi is such object.
 

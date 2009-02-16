@@ -37,34 +37,34 @@ cls.scatt.diss.mx(diss.mx, clust)
 	The \emph{complete diameter} represents the distance between two the most remote objects belonging 
 	to the same cluster. 
 
-	diam1(C) = max{ d(x,y): x,y belongs to cluster C }
+	diam1(C) = max\{ d(x,y): x,y belongs to cluster C \}
 	
 	The \emph{average diameter} distance defines the average distance between all of the 
 	samples belonging to the same cluster. 
 
-	diam2(C) = 1/|C|(|C|-1) * sum{forall x,y belongs to cluster C and x != y } d(x,y)
+	diam2(C) = 1/|C|(|C|-1) * sum\{ forall x,y belongs to cluster C and x != y \} d(x,y)
 
 	The \emph{centroid diameter} distance reflects the double average distance between all of the 
 	samples and the cluster's center (v(C) - cluster center).
 
-	diam3(C) = 1/|C| * sum{forall x belonging to cluster C} d(x,v(C))
+	diam3(C) = 1/|C| * sum\{ forall x belonging to cluster C\} d(x,v(C))
 
 	\emph{Intercluster distances}
 
 	The \emph{single linkage} distance defines the closest distance between two samples 
 	belonging to two different clusters. 
 
-	dist1(Ci,Cj) = min{ d(x,y): x belongs to Ci and y to Cj cluster }
+	dist1(Ci,Cj) = min\{ d(x,y): x belongs to Ci and y to Cj cluster \}
 
 	The \emph{complete linkage} distance represents the distance between the most remote samples
 	belonging to two different clusters. 
 
-	dist2(Ci,Cj) = max{ d(x,y): x belongs to Ci and y to Cj cluster }
+	dist2(Ci,Cj) = max\{ d(x,y): x belongs to Ci and y to Cj cluster \}
 
 	The \emph{average linkage} distance defines the average distance between all of the samples 
 	belonging to two different clusters. 
 
-	dist3(Ci,Cj) = 1/(|Ci|*|Cj|) * sum{forall x belongs Ci and y to Cj } d(x,y)
+	dist3(Ci,Cj) = 1/(|Ci|*|Cj|) * sum\{ forall x belongs Ci and y to Cj \} d(x,y)
 
 	The \emph{centroid linkage} distance reflects the distance between the centres of two clusters
 	(v(i), v(j) - clusters' centers).
@@ -75,14 +75,14 @@ cls.scatt.diss.mx(diss.mx, clust)
 	and all of samples belonging to a different cluster. 
 
 	dist5(Ci,Cj) = 1/(|Ci|+|Cj|) * 
-				   ( sum{forall x belongs Ci } d(x,v(j)) + sum{forall y belongs Cj } d(y,v(i)) )
+				   ( sum\{ forall x belongs Ci \} d(x,v(j)) + sum\{ forall y belongs Cj \} d(y,v(i)) )
 
 	\emph{Hausdorff metrics} are based on the discovery of a maximal distance from samples of one 
 	cluster to the nearest sample of another cluster. 
  
-	dist6(Ci,Cj) = max{ distH(Ci,Cj), distH(Cj,Ci) }
+	dist6(Ci,Cj) = max\{ distH(Ci,Cj), distH(Cj,Ci) \}
 
-	where: distH(A,B) = max{ min{ d(x,y): y belongs to B}: x belongs to A }
+	where: distH(A,B) = max\{ min\{ d(x,y): y belongs to B\}: x belongs to A \}
 	
 }
 \value{

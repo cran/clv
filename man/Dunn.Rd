@@ -35,7 +35,7 @@ clv.Dunn( index.list, intracls, intercls)
 \details{
 	Dunn index:
 
-	D = [ min{ k,l - numbers of clusters } \emph{dist}(Ck, Cl) ]/[  max{ m - cluster number } \emph{diam}(Cm) ]
+	D = [ min\{ k,l - numbers of clusters \} \emph{dist}(Ck, Cl) ]/[  max\{ m - cluster number \} \emph{diam}(Cm) ]
  
 	\tabular{ll}{
 	k,l,m  \tab - numbers of clusters which come from the same partitioning, \cr

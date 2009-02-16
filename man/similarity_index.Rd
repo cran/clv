@@ -18,12 +18,12 @@ similarity.index(cnf.mx)
 }
 \details{
 	Let M is n x m (n <= m) \emph{confusion matrix} for partitionings P and P'.
-	Any one to one function \emph{sigma}: {1,2,...,n} -> {1,2,... ,m}.
+	Any one to one function \emph{sigma}: \{1,2,...,n\} -> \{1,2,... ,m\}.
 	is called \emph{assignment} (or also \emph{association}).
 	Using set of \emph{assignment} functions, A(P,P') index defined as:
 	
-	A(P,P') = max{ sum( forall i in 1:length(\emph{sigma}) )
-	M[i,\emph{sigma(i)}]: \emph{sigma} is an \emph{assignment} }
+	A(P,P') = max\{ sum( forall i in 1:length(\emph{sigma}) )
+	M[i,\emph{sigma(i)}]: \emph{sigma} is an \emph{assignment} \}
 	
 	is found. (\emph{Assignment} which satisfy above equation is called \emph{optimal assignment}).
 	Using this value we can compute \emph{similarity index} S(P.P') = (A(P,P') - 1)/(N - 1) where 

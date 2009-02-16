@@ -23,18 +23,19 @@ confusion.matrix <- function(clust1,clust2)
 
 similarity.index <- function(cnf.mx)
 {
+  cnf.mx = data.validity.int(cnf.mx, "cnf.mx")
+
+  if( TRUE %in% (cnf.mx < 0) )
+    stop("Bad input data: each 'cnf.mx' matrix element should be equal or greater than 0.")
+  
 	return(similarity.index.int(cnf.mx))
 }
 
-similarity.index.int <- function(cnf.mx, opt.assign=0)
+similarity.index.int <- function(cnf.mx, opt.assign=NULL)
 {
-	cnf.mx = data.validity.int(cnf.mx, "cnf.mx")
-
-	if( TRUE %in% (cnf.mx < 0) )
-		stop("Bad input data: each 'cnf.mx' matrix element should be equal or greater than 0.")
 	if( dim(cnf.mx)[1] > dim(cnf.mx)[2] ) cnf.mx = t(cnf.mx)
 
-	if(opt.assign == 0) opt.assign = ( .Call("clv_optimalAssignment", cnf.mx, PACKAGE="clv") + 1 )
+	if(is.null(opt.assign)) opt.assign = ( .Call("clv_optimalAssignment", cnf.mx, PACKAGE="clv") + 1 )
 
 	app = 0	
 	opt.asgn.len = length(opt.assign)

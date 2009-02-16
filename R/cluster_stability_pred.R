@@ -1,6 +1,16 @@
 #--------------------------------------------------------------------------------------------------#
 #------------------- CLUSTER STABILITY -> DISTANCE BETWEEN CLUSTERING RESULTS ---------------------#
 
+# some check functions
+
+check.pred.wrapper <- function(pred.method)
+{
+  return( list(pred.method=pred.method) )
+}
+
+#---------------------------------#
+# ALGORITHM
+#---------------------------------#
 
 get.perm.sample <- function(prev.perm, clust.num)
 {
@@ -36,10 +46,10 @@ get.perm.sample <- function(prev.perm, clust.num)
       }
     }
   }
-  
-  if(clust.num > 2) tail = sample((1:clust.num)[-head])
+
+  if(clust.num > 2) tail = sample(1:clust.num)[-head]
   else tail = NULL
-  
+
   return(c(head,tail))
 }
 
@@ -47,25 +57,31 @@ stab.assoc.factor <- function(cnf.mx, clust.num)
 {
   factor = 0
   perm.num = clust.num *(clust.num-1)
-  
+
   iter = 0
   perm.smp.vec = NULL
+  smp.tmp = 1:clust.num
+
   while( iter < perm.num )
   {
-    perm.smp.vec = get.perm.sample(perm.smp.vec, clust.num)
-    factor = factor + similarity.index.int(cnf.mx, perm.smp.vec) / perm.num
+    # subsampling algorithm,- to be investigated which approach to use
+    # perm.smp.vec = get.perm.sample(perm.smp.vec, clust.num)
+    perm.smp.vec = sample(smp.tmp)
+    factor = factor + ( similarity.index.int(cnf.mx, perm.smp.vec) / perm.num )
     iter = iter + 1
   }
-  
+
   return(factor)
 }
 
+# -------------------------------------------------------------------------------------------
+# CLUSTER STABILITY ALGORITHM - transfer by prediction
 # version for all - hierarchical and aglomerative algorithms (for hierarcical is not optimal)
 
-clust.stab.predict.pver.internal <- function( data, clust.num, sample.num, ratio, clust.method, clust.wrap, pred.wrap )
+clust.stab.predict.pver.internal <- function( data, clust.num, sample.num, ratio, clust.method, pred.method )
 {
 # prepare results
-	result 
+	result = 0
 	si.res = 0
 	factor.res = 0
 
@@ -75,53 +91,64 @@ clust.stab.predict.pver.internal <- function( data, clust.num, sample.num, ratio
 	{
 		smp = sort( sample( 1:obj.num, ratio * obj.num ) )
 
-		base.data = data[smp,]
-		cls.base = clust.wrap( clust.method( base.data, clust.num ) )
+		base.data = as.matrix(data[smp,])
+		cls.base = clust.method( base.data, clust.num )
 
-		rest.data = data[-smp,]
-		cls.rest = clust.wrap( clust.method(rest.data, clust.num) )
+		rest.data = as.matrix(data[-smp,])
+		cls.rest = clust.method(rest.data, clust.num)
 
-		cls.pred = pred.wrap( base.data, cls.base, rest.data )
+		cls.pred = pred.method( base.data, cls.base, rest.data )
 
+    print("CLUST STAB")
+    print(cls.rest)
+    print(cls.pred)
+    # JEST PROBLEM jesli cnf.mx nie jest kwardratowa!!!!!!!!
 		cnf.mx = confusion.matrix(cls.rest, cls.pred)
+    # claculate fi_s  
 		si = similarity.index( cnf.mx )
+    # claculate R_s
 		factor = stab.assoc.factor(cnf.mx, clust.num)
 
+    # calculate S(fi_s)
 		si.res = ( si / sample.num ) + si.res
+    # calculate S(R_s)  
 		factor.res = ( factor / sample.num ) + factor.res
 	}
 
-# this is wrong !!!!! - to investigate :D :D :D 
-	result = ((factor.res+1)/factor.res) * si.res - 1/factor.res
+  # normalize the result
+  tmp = 1/(1-factor.res)
+	result = ( tmp * si.res ) + 1 - tmp
 	return( result )
 }
 
 # ------- cluster stability - similarity index -> ver. for partitionings algorithms ------ #
 
-clust.stab.predict.pver <- function( data, cl.num, sample.num, ratio, clust.method, clust.wrap, pred.wrap )
+clust.stab.predict.pver <- function( data, cl.num, sample.num, ratio, clust.method, pred.method )
 {
 	# result = vector("list", length=ind.num )
-	result = as.data.frame(matrix(0, 1, cl.num))
+	result = as.data.frame(matrix(0, 1, length(cl.num)))
 
 	iter = 1
 	for( cls.num in cl.num )
 	{
-		result[iter] = clust.stab.predict.pver.internal(data, clust.num=cls.num, sample.num=sample.num, ratio=(1-ratio), clust.method=clust.method, clust.wrap=clust.wrap, pred.wrap=pred.wrap )
-				
+		result[[iter]] = clust.stab.predict.pver.internal(data, clust.num=cls.num, sample.num=sample.num, ratio=(1-ratio), clust.method=clust.method, pred.method=pred.method )
 		iter = iter + 1
 	}
-
-	colnames(result[[iter]]) = paste("C", cl.num, sep="")
+  
+	colnames(result) = paste("C", cl.num, sep="")
 
 	return(result)
 }
 
 # ------- cluster stability - similarity index -> ver. for hierarhical algorithms ------ #
 
-clust.stab.predict.hver <- function(data, cl.num, sample.num, ratio, clust.method, clust.wrap, pred.wrap)
+clust.stab.predict.hver <- function(data, cl.num, sample.num, ratio, clust.method, clust.wrap, pred.method)
 {
+  cl.num.len = length(cl.num)
 	obj.num = dim(data)[1]
-	result = as.data.frame(matrix(0,1,length(cl.num)))
+	
+  si.vec  = rep(0, times=cl.num.len) 
+  fac.vec = rep(0, times=cl.num.len) 
   
 	for( j in 1:sample.num )
 	{
@@ -138,24 +165,38 @@ clust.stab.predict.hver <- function(data, cl.num, sample.num, ratio, clust.metho
 		{
 			base.cls = clust.wrap( clust.tree, clust.num )
 			rest.cls = clust.wrap( rest.tree, clust.num )
-			rest.pred = pred.wrap( base.data, base.cls, rest.data )
+			rest.pred = pred.method( base.data, base.cls, rest.data )
 
 			cnf.mx = confusion.matrix(rest.cls, rest.pred)
+      # claculate fi_s
 			si = similarity.index( cnf.mx )
-			factor = stab.assoc.factor(cnf.mx, clust.num)			
+      # calculate R_s
+			factor = stab.assoc.factor(cnf.mx, clust.num)
 
-			result[1, iter] = result[1, iter] + ((factor+1)/factor) * si - 1/factor
+      # calculate S(fi_s)
+			si.vec[iter]  = si.vec[iter]  + si/sample.num
+      # calculate S(R_s)
+      fac.vec[iter] = fac.vec[iter] + factor/sample.num
 			iter = iter + 1 
 		}
 	}
 
-	colnames(result[[iter]]) = paste("C", cl.num, sep="")
+  result  = as.data.frame(matrix(0,1,length(cl.num)))
+
+  # normalize all results
+  for(i in 1:cl.num.len)
+  {
+    tmp = 1/(1-fac.vec[i])
+    result[1, i] = tmp * si.vec[i] + 1 - tmp
+  }
+
+	colnames(result) = paste("C", cl.num, sep="")
 	return(result)
 }
 
 # cluster stability -> similarity index approach
 
-cls.stab.predict <- function( data, cl.num, 
+cls.stab.pred <- function( data, cl.num, 
 								rep.num=10, 
 								subset.ratio=0.75, 
 								clust.method=c("agnes","pam"),
@@ -167,11 +208,9 @@ cls.stab.predict <- function( data, cl.num,
 	data = data.validity(data, "data")
 	cl.num = cls.num.vect.validity(cl.num, dim(data)[1], "cl.num")
 
-	if( !is.integer(rep.num) ) rep.num=10
-	if( rep.num < 1 ) rep.num=10 
-
-	if( !is.numeric(subset.ratio) ) subset.ratio=0.75
-	if( subset.ratio > 1 || subset.ratio <= 0 ) subset.ratio=0.75
+	rep.num = check.rep.num(rep.num)
+  subset.ratio = check.subset.ratio(data, subset.ratio)
+  cl.num = cut.cl.num(data, cl.num, subset.ratio)
 
 	cls.method.type.bool = check.avail.methods(clust.method, "clust.method", supp.cls.methods.vec.const)
 	method.type.bool = check.avail.methods(method.type, "method.type", hierarhical.method.types.vec.const )
@@ -199,15 +238,20 @@ cls.stab.predict <- function( data, cl.num,
 					{
 						clust.alg.pver <- function(data, clust.num) 
 						{ 
-							return( supp.cls.methods.list.const[[method.num]]$alg(data, clust.num=clust.num, method.type=NULL, ...) ) 
+              return( supp.cls.methods.list.const[[method.num]]$wrp(
+                        supp.cls.methods.list.const[[method.num]]$alg(
+                          data, clust.num=clust.num, 
+                          method.type=NULL, ...
+                        )
+                      )
+                    )
 						}
 						
-						cls.result.list[[iter]] = algorithm( 
+            cls.result.list[[iter]] = clust.stab.predict.pver( 
 														data=data, cl.num=cl.num, 
 														sample.num=rep.num, ratio=subset.ratio,
 														clust.method=clust.alg.pver,
-														clust.wrap=supp.cls.methods.list.const[[method.num]]$wrp,
-														pred.wrap=supp.pred.methods.list.const[[pred.method.num]]$wrp
+														pred.method=supp.pred.methods.list.const[[pred.method.num]]$wrp
 													)
 						names(result.list)[iter] = supp.cls.methods.vec.const[method.num]
 						iter = iter + 1
@@ -228,14 +272,31 @@ cls.stab.predict <- function( data, cl.num,
 									{ 
 										return( supp.cls.methods.list.const[[method.num]]$alg(data, 0, method.type=hierarhical.method.types.vec.const[i], ...) ) 
 									}
-
-									cls.result.list[[iter]] = algorithm( 
-																	data=data, cl.num=cl.num, 
-																	sample.num=rep.num, ratio=subset.ratio,
-																	clust.method=clust.alg.hver,
-																	clust.wrap=supp.cls.methods.list.const[[method.num]]$wrp, 
-				 													pred.wrap=supp.pred.methods.list.const[[pred.method.num]]$wrp
-																)
+                  
+                  if( fast )
+                  {
+									  cls.result.list[[iter]] = clust.stab.predict.hver( 
+																	  data=data, cl.num=cl.num, 
+																	  sample.num=rep.num, ratio=subset.ratio,
+																	  clust.method=clust.alg.hver,
+																	  clust.wrap=supp.cls.methods.list.const[[method.num]]$wrp, 
+				                            pred.method=supp.pred.methods.list.const[[pred.method.num]]$wrp
+																  )
+                  }
+                  else
+                  {
+                    clust.alg.pver <- function(data, clust.num) 
+                    { 
+                      return( supp.cls.methods.list.const[[method.num]]$wrp(clust.alg.hver(data), clust.num ) )
+                    }
+                    
+                    cls.result.list[[iter]] = clust.stab.predict.pver( 
+                                    data=data, cl.num=cl.num, 
+                                    sample.num=rep.num, ratio=subset.ratio,
+                                    clust.method=clust.alg.hver,
+                                    pred.method=supp.pred.methods.list.const[[pred.method.num]]$wrp
+                                  )
+                  }
 									names(cls.result.list)[iter] = paste(
 																	supp.cls.methods.vec.const[method.num],
 																	hierarhical.method.types.vec.const[i],
@@ -254,4 +315,49 @@ cls.stab.predict <- function( data, cl.num,
 	}
 	
 	return(result.list)
+}
+
+cls.stab.pred.usr <- function( 
+                data, cl.num,
+                clust.alg,
+                pred.alg, 
+                rep.num=10, 
+                subset.ratio=0.75
+                )
+{
+# check input arguments
+  data = data.validity(data, "data")
+  cl.num = cls.num.vect.validity(cl.num, dim(data)[1], "cl.num")
+
+  rep.num = check.rep.num(rep.num)
+  subset.ratio = check.subset.ratio(data, subset.ratio)
+  cl.num = cut.cl.num.pred(data, cl.num, subset.ratio)
+
+  alg.cls = check.clust.wrappers(clust.alg)
+  alg.prd = check.pred.wrapper(pred.alg)
+
+  # run algorithms
+  result = NULL
+
+  if( alg.cls$fast )
+  {
+    result  = clust.stab.predict.hver( 
+                data=data, cl.num=cl.num, 
+                sample.num=rep.num, ratio=subset.ratio,
+                clust.method=alg.cls$clust.method,
+                clust.wrap=alg.cls$clust.wrap, 
+                pred.method=alg.prd$pred.method
+              )
+   }
+   else
+   {
+     result = clust.stab.predict.pver( 
+                data=data, cl.num=cl.num, 
+                sample.num=rep.num, ratio=subset.ratio,
+                clust.method=alg.cls$clust.method,
+                pred.method=alg.prd$pred.method
+              )
+   }
+
+   return(result)
 }

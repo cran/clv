@@ -35,7 +35,7 @@ clv.Davies.Bouldin( index.list, intracls, intercls)
 \details{
 	\emph{Davies-Bouldin} index is given by equation:
 
-	DB = (1/|C|) sum{forall i in 1:|C|} max[ i != j ] { (diam(Ci) + diam(Cj))/dist(Ci,Cj) }
+	DB = (1/|C|) sum\{forall i in 1:|C|\} max[ i != j ] \{ (diam(Ci) + diam(Cj))/dist(Ci,Cj) \}
 
 	\tabular{ll}{
 	i,j  \tab - numbers of clusters which come from the same partitioning, \cr

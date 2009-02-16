@@ -16,14 +16,14 @@ clv.Dis(cluster.center)
 \details{
 	The definition of total separation between clusters is given by equation: 
 
-	\code{Dis} = (Dmax/Dmin) * sum{forall i in 1:|C|} 1 /( sum{forall j in 1:|C|} ||vi - vj|| )
+	\code{Dis} = (Dmax/Dmin) * sum\{forall i in 1:|C|\} 1 /( sum\{forall j in 1:|C|\} ||vi - vj|| )
 
 	where:
 	\tabular{ll}{
 	|C| \tab - number of clusters, \cr
 	vi, vj \tab - centers of clusters i and j, \cr
-	Dmax \tab - defined as: max{||vi - vj||: vi,vj - centers of clusters }, \cr
-	Dmin \tab - defined as: min{||vi - vj||: vi,vj - centers of clusters }, \cr
+	Dmax \tab - defined as: max\{||vi - vj||: vi,vj - centers of clusters \}, \cr
+	Dmin \tab - defined as: min\{||vi - vj||: vi,vj - centers of clusters \}, \cr
 	||x|| \tab - means: sqrt(x*x').
 	}
 

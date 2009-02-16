@@ -80,18 +80,12 @@ cls.alg( clust.method, clust.wrap, fast )
   
   If a hierarchical algorithm is going to be used user has to use helper \code{cls.alg} function that produces an object of "cls.alg" type.
   This object encapsulates a pair of methods that are used in hierarchical version (which is faster if the \code{fast} argument is not FALSE) 
-  of cluster stability approach. These methods are:
-  
-  \item{clust.method}{
-     which builds hierarchical structure that might be cut. The declaration of this function should always look like 
-     this one: \code{ function(data) { ... return(hierarchical.struct) } }.
-  }
-  
-  \item{clust.wrap}{   
-     which cuts this hierarchical structure to \code{clust.num} clusters. This function definition should always look 
-     like this one: \code{ function(clust.res, clust.num) { ... return(integer.vector)} }. As an output function should 
-     always return integer vector that represents single clustering result on \code{clust.res}. 
-  }
+  of cluster stability approach. These methods are:\cr
+  1. \emph{clust.method} - which builds hierarchical structure that might be cut. The declaration of this function should always look like 
+     this one: \kbd{ function(data) \{ ... return(hierarchical.struct) \} },\cr
+  2. \emph{clust.wrap} - which cuts this hierarchical structure to \code{clust.num} clusters. This function definition should always look 
+     like this one: \kbd{ function(clust.res, clust.num) \{ ... return(integer.vector)\} }. As an output function should 
+     always return integer vector that represents single clustering result on \code{clust.res}.
 
   \code{cls.alg} function has also third argument that indicates if fast computation should be taken (when \code{TRUE}) or if these two 
   methods should be converted to one partitioning algorithm and to be run as a normal partitioning algorithm.

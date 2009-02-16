@@ -109,9 +109,11 @@ cls.stab.opt.assign( data, cl.num, rep.num, subset.ratio, clust.method, method.t
 	
 }
 \seealso{
+    Advanced cluster stability functions:
+    \code{\link{cls.stab.sim.ind.usr}}, \code{\link{cls.stab.opt.assign.usr}}. 
+
 		Functions that compare two different partitionings:
-		\code{\link{clv.Rand}}, \code{\link{dot.product}},\code{\link{similarity.index}, 
-          \code{\link{cls.stab.sim.ind.usr}}, \code{\link{cls.stab.opt.assign.usr}}}.
+		\code{\link{clv.Rand}}, \code{\link{dot.product}}, \code{\link{similarity.index}}.
 	}
 \references{
 	A. Ben-Hur and I. Guyon \emph{Detecting stable clusters using principal component analysis},
