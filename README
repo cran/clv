@@ -9,14 +9,13 @@ README:
 
 RELASE NOTES:
 
-   1. The code related to cluster stability aproach was refactored in the way 
-      that two new functions (like cls.stab.*.usr) are introduced to the end user.
-   2. Doing some general fixes and improvements (especially checking input arguments).
-   3. Some small corrections and improvements in DOCUMENTATION were done.
+   1. Small documentation fix ater CRAN check.
+   2. Fixing small bug in intracluster average diameter 
+      (the result was twice smaller than should be).
 
 TODO:
 
-   Next cluster stability approach (based on prediction)is ongoing. The code is there but not 
+   Next cluster stability approach (based on prediction) is ongoing. The code is there but not 
    available for end user yet. First has to be refactored and tested.
 
    Create and document R functions for group of matrix cluster scatter measures based 
@@ -29,3 +28,4 @@ SPECIAL THANKS TO:
 
    Artur Suchwalko for idea of this package and support.
    Przemyslaw Bernacki for preparing and running manual and automated tests.
+   Marcin for finding a bug in intracluster average diameter index.

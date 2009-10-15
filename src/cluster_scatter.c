@@ -190,7 +190,7 @@ SEXP clusterScatterMeasures
 					if( max_intracluster[cluster_i] < dist )
 						max_intracluster[cluster_i] = dist;
 
-					average_intracluster[cluster_i] += dist/(cluster_size[cluster_i]*(cluster_size[cluster_i]-1));
+					average_intracluster[cluster_i] += 2*(dist/(cluster_size[cluster_i]*(cluster_size[cluster_i]-1)));
 				}
 				else
 				{

@@ -11,7 +11,7 @@ cls.stab.opt.assign.usr( data, cl.num, clust.alg, rep.num, subset.ratio )
 cls.alg( clust.method, clust.wrap, fast )
 }
 \alias{cls.stab.sim.ind.usr}
-\alias{cls.stab.opt.assign.usr}\
+\alias{cls.stab.opt.assign.usr}
 \alias{cls.alg}
 \arguments{
   \item{data}{
