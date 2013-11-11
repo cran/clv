@@ -6,8 +6,10 @@
 	cluster stability results computed according to similarity index and pattern-wise stability approaches.
 }
 \usage{
-cls.stab.sim.ind( data, cl.num, rep.num, subset.ratio, clust.method, method.type, sim.ind.type, fast, ... )
-cls.stab.opt.assign( data, cl.num, rep.num, subset.ratio, clust.method, method.type, fast, ... )
+cls.stab.sim.ind( data, cl.num, rep.num, subset.ratio, clust.method,
+                   method.type, sim.ind.type, fast, ... )
+cls.stab.opt.assign( data, cl.num, rep.num, subset.ratio, clust.method,
+                      method.type, fast, ... )
 }
 \alias{cls.stab.sim.ind}
 \alias{cls.stab.opt.assign}
@@ -137,8 +139,10 @@ iter = c(2,3,4,5,6,7,9,12,15)
 smp.num = 5
 ratio = 0.8
 
-res1 = cls.stab.sim.ind( iris.data, iter, rep.num=smp.num, subset.ratio=0.7, sim.ind.type=c("rand","dot.pr","sim.ind") )
-res2 = cls.stab.opt.assign( iris.data, iter, clust.method=c("hclust","kmeans"), method.type=c("single","average") )
+res1 = cls.stab.sim.ind( iris.data, iter, rep.num=smp.num, subset.ratio=0.7,
+                         sim.ind.type=c("rand","dot.pr","sim.ind") )
+res2 = cls.stab.opt.assign( iris.data, iter, clust.method=c("hclust","kmeans"),
+                             method.type=c("single","average") )
 
 print(res1)
 boxplot(res1$agnes.average$sim.ind)

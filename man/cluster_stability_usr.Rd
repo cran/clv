@@ -153,10 +153,12 @@ agnes.part2 <- cls.alg(agnes.single, cutree.wrap, fast=FALSE)
 # fix arguments for cls.stab.* function
 iter = c(2,4,5,7,9,12,15)
 
-res1 = cls.stab.sim.ind.usr( iris.data, iter, pam.clust, sim.ind.type=c("rand","dot.pr","sim.ind"), rep.num=5, subset.ratio=0.7 )
+res1 = cls.stab.sim.ind.usr( iris.data, iter, pam.clust, 
+    sim.ind.type=c("rand","dot.pr","sim.ind"), rep.num=5, subset.ratio=0.7 )
 res2 = cls.stab.opt.assign.usr( iris.data, iter, clust.alg=cls.alg(agnes.single, cutree.wrap) )
 
-res3 = cls.stab.sim.ind.usr( iris.data, iter, agnes.part1, sim.ind.type=c("rand","dot.pr","sim.ind"), rep.num=5, subset.ratio=0.7 )
+res3 = cls.stab.sim.ind.usr( iris.data, iter, agnes.part1,
+     sim.ind.type=c("rand","dot.pr","sim.ind"), rep.num=5, subset.ratio=0.7 )
 res4 = cls.stab.opt.assign.usr( iris.data, iter, clust.alg=agnes.part2 )
 
 print(res1)

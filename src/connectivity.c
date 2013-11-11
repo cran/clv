@@ -83,6 +83,7 @@ SEXP connectivity
 		for(j=0; j<obj_num; j++)
 		{
 			if ( i == j ) j++;
+			if (j >= obj_num) break;
 			dist = 0;
 			prev_obj = j;
 			dist = metric(data_sxp, data_sxp, i, j, obj_num, obj_num, dim_num, mean);
@@ -181,6 +182,7 @@ SEXP connectivityDissMx
 		for(j=0; j<obj_num; j++)
 		{
 			if ( i == j ) j++;
+                        if (j >= obj_num) break;
 			dist = 0;
 			prev_obj = j;
 			dist = diss_matrix[ i + j*obj_num ];

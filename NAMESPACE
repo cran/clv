@@ -1,6 +1,6 @@
 useDynLib("clv")
 
-import("cluster")
+import("cluster", "class")
 import("stats")
 
 export("cls.scatt.data",

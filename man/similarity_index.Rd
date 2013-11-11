@@ -131,7 +131,8 @@ sub.smp.ratio = 0.8
 print("PAM method:")
 for( i in iter )
 {
-	result = cls.stabb(iris.data, clust.num=i, sample.num=smp.num, ratio=sub.smp.ratio, method=pam, wrapp=pam.wrapp)
+	result = cls.stabb(iris.data, clust.num=i, sample.num=smp.num,
+            ratio=sub.smp.ratio, method=pam, wrapp=pam.wrapp)
 	print(result)
 }
 
@@ -139,7 +140,8 @@ for( i in iter )
 print("Agnes (single) method:")
 for( i in iter )
 {
-	result = cls.stabb(iris.data, clust.num=i, sample.num=smp.num, ratio=sub.smp.ratio, method=agnes.average, wrapp=identity)
+	result = cls.stabb(iris.data, clust.num=i, sample.num=smp.num,
+            ratio=sub.smp.ratio, method=agnes.average, wrapp=identity)
 	print(result)
 }
 }
