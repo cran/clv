@@ -262,7 +262,6 @@ SEXP clv_clusteredSetsSection(SEXP cluster1_sxp, SEXP cluster2_sxp, SEXP dim)
 	
 	int *item_num_tab;
 	SEXP result_matrix_sxp;
-	result_matrix_sxp;
 
 	// as result we have matrix (n x 3)
 	// n - number of objects (rows) in section

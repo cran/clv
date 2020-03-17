@@ -1,4 +1,4 @@
-08ad0d75d8fcf4ff576749d999022d2d *DESCRIPTION
+5068c448128d6eb77bd0a7b461c82939 *DESCRIPTION
 69ef986ab78b8664f1e893b341c8b7c6 *NAMESPACE
 8ce649a6fb3c751aa82a68dacef05797 *R/01_wrappers.R
 ccdb1e3196d8223a96b8b3b03eca01ad *R/02_constants.R
@@ -36,7 +36,7 @@ d358a6f6f16da2d31cc333f344493fe8 *man/dot_product.Rd
 91468818b1451017f5b3295a8899f55c *man/standard_external_measures.Rd
 fbd0a2259ef2396e270ab2193e853ad2 *man/wcls_bcls_matrices.Rd
 7c7d17dc6d795befbc1cf010f384b5d9 *src/SD_SDbw_indicies.c
-6c29d2b20a16a76882d6371c8e84dd3d *src/VCLDefines.c
+f983d4b8eb788ac593f8ec1f791deade *src/VCLDefines.c
 da509d1f2a8eac2b4d5750705428bbbe *src/VCLDefines.h
 45cfe74ee60328b5cea061d18709a5bf *src/cluster_scatter.c
 a9f20980e8f65163bc9f2f95b9e63773 *src/cluster_stability.c
