@@ -44,7 +44,7 @@ int clv_checkConflict(int* opt_assignment, int row_num, int pos)
 	0 - heads, 1 - tails
 */
 
-int clv_throwTheCoin()
+int clv_throwTheCoin(void)
 {
 	GetRNGstate();
 	double result = unif_rand();

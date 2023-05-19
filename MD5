@@ -1,4 +1,4 @@
-5068c448128d6eb77bd0a7b461c82939 *DESCRIPTION
+bb1ce4c8adb1ff11845ea80890f36659 *DESCRIPTION
 69ef986ab78b8664f1e893b341c8b7c6 *NAMESPACE
 8ce649a6fb3c751aa82a68dacef05797 *R/01_wrappers.R
 ccdb1e3196d8223a96b8b3b03eca01ad *R/02_constants.R
@@ -43,5 +43,5 @@ a9f20980e8f65163bc9f2f95b9e63773 *src/cluster_stability.c
 d2096e10ed25da5bcadebf22ea96d632 *src/connectivity.c
 ea1d728c39260fb6dd2d090d382d1eaf *src/dot_product.c
 1fd8ac1ceec546b3fb3f3dabe7742cc0 *src/matrix_scatter_measures.c
-1cedf01fe250ebd5d3e2ebfcb84909fb *src/optimal_assignment.c
+c8e410f5e552f2d8744a64929c032a87 *src/optimal_assignment.c
 20cc2be86a360e1ae708bb1c83ae464f *src/standard_external_measures.c
