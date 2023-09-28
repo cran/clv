@@ -1,6 +1,6 @@
 Package: clv
 Title: Cluster Validation Techniques
-Version: 0.3-2.3
+Version: 0.3-2.4
 Author: Lukasz Nieweglowski <wookashn@gmail.com>
 Maintainer: Lukasz Nieweglowski <wookashn@gmail.com>
 Description: Package contains most of the popular internal and external
@@ -12,7 +12,7 @@ Description: Package contains most of the popular internal and external
         clustering algorithms.
 Depends: cluster, class
 License: GPL (>= 2)
-Packaged: 2023-05-10 16:15:52 UTC; ripley
+Packaged: 2023-09-28 08:18:48 UTC; hornik
 Repository: CRAN
-Date/Publication: 2023-05-19 07:18:37 UTC
+Date/Publication: 2023-09-28 08:33:07 UTC
 NeedsCompilation: yes

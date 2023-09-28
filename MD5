@@ -1,9 +1,9 @@
-bb1ce4c8adb1ff11845ea80890f36659 *DESCRIPTION
+59ae10afd4e6f98469de0154715b0421 *DESCRIPTION
 69ef986ab78b8664f1e893b341c8b7c6 *NAMESPACE
 8ce649a6fb3c751aa82a68dacef05797 *R/01_wrappers.R
 ccdb1e3196d8223a96b8b3b03eca01ad *R/02_constants.R
 b008a8f6f6996f0676bae3f7d6f7545f *R/SD_SDbw_indicies.R
-fa56f8e7c3f4dbc82f262e81d4ddcb45 *R/cluster_scatter.R
+3d0a7b29c08b22549c1f0192645395e6 *R/cluster_scatter.R
 f1093f1fd4a31aba5aa567ac6b13d8ff *R/cluster_stability_base.R
 e1c19cfa4380b573084833f6a1c1fd9f *R/cluster_stability_main.R
 0a32eeee2060f64c9f2c94f4ec136ddb *R/cluster_stability_pred.R

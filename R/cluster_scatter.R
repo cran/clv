@@ -117,7 +117,6 @@ cls.scatt.diss.mx <- function( diss.mx, clust )
 clv.Dunn <- function( index.list, intracls, intercls )
 {
 
-	# sprawdzenie czy ind.list jest obiektem pochodz±cym z funckji cls.scatt.measures
 	if( class(index.list) != cls.class() ) 
 		stop("Bad input data: 'index.list' is not an object created by function 'cls.scatt.measures(..)'
 				or 'cls.scatt.measures.diss.mx(..)' .")
@@ -213,7 +212,6 @@ clv.DB.ind <- function( vect, mx, clust.num )
 
 clv.Davies.Bouldin <- function( index.list, intracls, intercls )
 {
-	# sprawdzenie czy ind.list jest obiektem pochodz±cym z funckji cls.scatt.measures
 	if( class(index.list) != cls.class() ) 
 		stop("Bad input data: 'index.list' is not an object created by function 'cls.scatt.measures(..)'
 				or 'cls.scatt.measures.diss.mx(..)' .")
